@@ -18,18 +18,19 @@
 <nav class="nav" id="nav">
   <button class="active" data-page="shop">🛍️ Catalogo</button>
   <button data-page="cart">🛒 Carrello <span id="cartCount">0</span></button>
+  <button data-page="admin">⚙️ Gestione</button>
 </nav>
 <main class="content" id="content"></main>
-<div class="foot">EL PUEBLO · Demo locale interattiva</div>
+<div class="foot">EL PUEBLO · Anteprima interattiva · Prodotti e ordini salvati solo in questo browser</div>
 </div>
 <div id="modalRoot"></div>
 <script>
 (() => {
 const $ = s => document.querySelector(s);
 const STORE='elpueblo_demo_v1';
-let state={categories:['Novità','Abbigliamento','Accessori'],products:[],cart:[],orders:[]};
+let state={categories:['Novità','Abbigliamento','Accessori'],products:[{id:101,name:'Felpa El Pueblo',category:'Abbigliamento',description:'Felpa streetwear — prodotto dimostrativo, modifica nome, foto e prezzi dal pannello Gestione.',variants:[{name:'S',price:'39,90'},{name:'M',price:'39,90'},{name:'L',price:'39,90'}],photos:[],video:''},{id:102,name:'T-shirt El Pueblo',category:'Novità',description:'T-shirt grafica — prodotto dimostrativo personalizzabile.',variants:[{name:'S',price:'19,90'},{name:'M',price:'19,90'},{name:'L',price:'19,90'}],photos:[],video:''},{id:103,name:'Cappellino El Pueblo',category:'Accessori',description:'Cappellino streetwear — prodotto dimostrativo personalizzabile.',variants:[{name:'Taglia unica',price:'24,90'}],photos:[],video:''}],cart:[],orders:[]};
 let page=(location.hash==='#admin'?'admin':'shop'),filter='Tutte',editingId=null,files={photos:[],video:null},adminAuthed=false;
-try { const x=JSON.parse(localStorage.getItem(STORE)||'null'); if(x) state={...state,...x}; } catch(e){}
+try { const x=JSON.parse(localStorage.getItem(STORE)||'null'); if(x) state={...state,...x}; if(!Array.isArray(state.products)||state.products.length===0){state.products=[{id:101,name:'Felpa El Pueblo',category:'Abbigliamento',description:'Felpa streetwear — prodotto dimostrativo, modifica nome, foto e prezzi dal pannello Gestione.',variants:[{name:'S',price:'39,90'},{name:'M',price:'39,90'},{name:'L',price:'39,90'}],photos:[],video:''},{id:102,name:'T-shirt El Pueblo',category:'Novità',description:'T-shirt grafica — prodotto dimostrativo personalizzabile.',variants:[{name:'S',price:'19,90'},{name:'M',price:'19,90'},{name:'L',price:'19,90'}],photos:[],video:''},{id:103,name:'Cappellino El Pueblo',category:'Accessori',description:'Cappellino streetwear — prodotto dimostrativo personalizzabile.',variants:[{name:'Taglia unica',price:'24,90'}],photos:[],video:''}];}} catch(e){}
 const money=n=>'€ '+(Number(String(n).replace(',','.'))||0).toFixed(2).replace('.',',');
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function persist(){try{localStorage.setItem(STORE,JSON.stringify({...state,products:state.products.map(p=>({...p,photos:[],video:''}))}));}catch(e){}}
@@ -56,11 +57,11 @@ $('#addCart').onclick=()=>{const v=p.variants[Number($('#variantChoice').value)]
 function renderCart(){
 if(!state.cart.length){$('#content').innerHTML=`<h2 class="title">IL TUO CARRELLO</h2><div class="card empty">🛒<p>Il carrello è vuoto.</p><button id="goShop">Vai al catalogo</button></div>`;$('#goShop').onclick=()=>{page='shop';render()};return;}
 const total=state.cart.reduce((n,x)=>n+(Number(String(x.price).replace(',','.'))||0)*x.qty,0);
-$('#content').innerHTML=`<h2 class="title">IL TUO CARRELLO</h2>${state.cart.map((x,i)=>`<div class="itemrow"><div class="grow"><strong>${esc(x.name)}</strong><div class="muted">${esc(x.variant)} · ${money(x.price)}</div><div class="row" style="margin-top:8px"><button class="secondary" data-minus="${i}">−</button><b>${x.qty}</b><button class="secondary" data-plus="${i}">+</button></div></div><button class="danger" data-remove="${i}">✕</button></div>`).join('')}<div class="card"><div class="total"><span>Totale</span><span class="price">${money(total)}</span></div><div class="field"><label for="customerName">Nome per ordine demo</label><input id="customerName" placeholder="Il tuo nome"></div><button id="placeOrder" style="width:100%">CONFERMA ORDINE DEMO</button><p class="muted">Demo locale: non invia ordini reali.</p></div>`;
+$('#content').innerHTML=`<h2 class="title">IL TUO CARRELLO</h2>${state.cart.map((x,i)=>`<div class="itemrow"><div class="grow"><strong>${esc(x.name)}</strong><div class="muted">${esc(x.variant)} · ${money(x.price)}</div><div class="row" style="margin-top:8px"><button class="secondary" data-minus="${i}">−</button><b>${x.qty}</b><button class="secondary" data-plus="${i}">+</button></div></div><button class="danger" data-remove="${i}">✕</button></div>`).join('')}<div class="card"><div class="total"><span>Totale</span><span class="price">${money(total)}</span></div><div class="field"><label for="customerName">Nome per ordine demo</label><input id="customerName" placeholder="Il tuo nome"></div><button id="placeOrder" style="width:100%">CONFERMA ORDINE DEMO</button><p class="muted">Anteprima: l’ordine è salvato solo in questo browser e non viene inviato al negozio.</p></div>`;
 $('#content').querySelectorAll('[data-minus]').forEach(b=>b.onclick=()=>{const i=+b.dataset.minus;state.cart[i].qty=Math.max(1,state.cart[i].qty-1);persistSafe();render()});
 $('#content').querySelectorAll('[data-plus]').forEach(b=>b.onclick=()=>{state.cart[+b.dataset.plus].qty++;persistSafe();render()});
 $('#content').querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{state.cart.splice(+b.dataset.remove,1);persistSafe();render()});
-$('#placeOrder').onclick=()=>{const name=$('#customerName').value.trim();if(!name){alert('Inserisci il nome per l’ordine demo.');return;}state.orders.unshift({id:Date.now(),name,items:state.cart.map(x=>({...x})),total,status:'Ricevuto (demo)'});state.cart=[];persistSafe();alert('Ordine salvato solo in questa demo.');page='orders';render();};
+$('#placeOrder').onclick=()=>{const name=$('#customerName').value.trim();if(!name){alert('Inserisci il nome per l’anteprima.');return;}state.orders.unshift({id:Date.now(),name,items:state.cart.map(x=>({...x})),total,status:'Ricevuto (anteprima)'});state.cart=[];persistSafe();alert('Ordine salvato in questa anteprima, non inviato al negozio.');page='orders';render();};
 }
 function renderAdmin(){
 if(!adminAuthed){$('#content').innerHTML=`<section class="card"><span class="badge">AREA PRIVATA · DEMO</span><h2 class="title" style="margin-top:10px">Accesso gestione</h2><p class="muted">Nel sito reale l'accesso dovrà essere verificato dal server. Qui il pulsante simula soltanto l'ingresso.</p><button id="demoLogin" style="width:100%">ENTRA NELLA DEMO ADMIN</button></section>`;$('#demoLogin').onclick=()=>{adminAuthed=true;render()};return;}
