@@ -1,183 +1,198 @@
-:root {
-  --yellow: #ffd329;
-  --ink: #17130f;
-  --blue: #17629a;
-}
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EL PUEBLO</title>
+  <style>
+    :root {
+      --oro: #ffd329;
+      --nero: #17130f;
+      --blu: #17629a;
+    }
 
-body {
-  margin: 0;
-  background: var(--ink);
-  color: white;
-  font-family: Arial, sans-serif;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-button { font: inherit; cursor: pointer; }
+    body {
+      margin: 0;
+      background: var(--nero);
+      color: white;
+      font-family: Arial, sans-serif;
+    }
 
-.screen {
-  min-height: 100vh;
-  min-height: 100dvh;
-}
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
 
-.home {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  overflow: hidden;
-  padding: 0 18px 34px;
-  isolation: isolate;
-  background:
-    linear-gradient(180deg, transparent 48%, rgba(15,12,10,.12) 60%, #17130f 88%),
-    var(--blue);
-}
+    .schermo {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 18px;
+      background:
+        radial-gradient(circle at top right, #275b7c 0, transparent 45%),
+        linear-gradient(145deg, #17130f, #282019);
+    }
 
-.art {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-}
+    .home {
+      width: 100%;
+      max-width: 480px;
+      text-align: center;
+      padding-top: 5vh;
+    }
 
-.shade {
-  position: absolute;
-  inset: 45% 0 0;
-  z-index: -1;
-  background: linear-gradient(transparent, rgba(16,12,9,.94));
-}
+    .eyebrow {
+      display: inline-block;
+      color: var(--nero);
+      background: var(--oro);
+      border: 2px solid white;
+      border-radius: 6px;
+      padding: 7px 12px;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
 
-.intro {
-  width: 100%;
-  max-width: 480px;
-  text-align: center;
-  margin-top: auto;
-  padding-top: min(68vh, 560px);
-}
+    .art {
+      margin: 22px auto;
+      width: 100%;
+      max-width: 430px;
+    }
 
-.eyebrow {
-  display: inline-block;
-  margin-bottom: 15px;
-  padding: 7px 12px;
-  color: var(--ink);
-  background: var(--yellow);
-  border: 2px solid var(--ink);
-  border-radius: 6px;
-  font-size: 10px;
-  font-weight: 900;
-  letter-spacing: 2px;
-  transform: rotate(-2deg);
-}
+    .art img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 4px solid var(--oro);
+      border-radius: 16px;
+      box-shadow: 0 8px 0 #000;
+    }
 
-.headline {
-  margin: 0 0 10px;
-  color: white;
-  font-size: clamp(30px, 9vw, 43px);
-  font-weight: 1000;
-  line-height: .95;
-  letter-spacing: -1.5px;
-  text-transform: uppercase;
-  -webkit-text-stroke: 1px var(--ink);
-  text-shadow: 3px 4px 0 var(--ink);
-}
+    h1 {
+      margin: 18px 0 10px;
+      color: var(--oro);
+      font-size: clamp(38px, 10vw, 60px);
+      font-weight: 1000;
+      line-height: .95;
+      letter-spacing: -2px;
+      text-transform: uppercase;
+      -webkit-text-stroke: 1px white;
+      text-shadow: 4px 4px 0 #000;
+    }
 
-.subtitle {
-  margin: 0 auto 22px;
-  max-width: 300px;
-  color: #f7e9cf;
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 1.5;
-}
+    .sottotitolo {
+      font-size: 14px;
+      letter-spacing: 3px;
+      font-weight: 800;
+    }
 
-.primary {
-  width: 100%;
-  max-width: 360px;
-  min-height: 58px;
-  padding: 15px;
-  color: var(--ink);
-  background: var(--yellow);
-  border: 3px solid var(--ink);
-  border-radius: 10px;
-  box-shadow: 0 6px 0 #a73521;
-  font-size: 17px;
-  font-weight: 1000;
-  letter-spacing: .5px;
-}
+    .descrizione {
+      color: #e4ded5;
+      line-height: 1.5;
+      margin: 20px auto;
+      max-width: 340px;
+    }
 
-.primary:active {
-  transform: translateY(4px);
-  box-shadow: 0 2px 0 #a73521;
-}
+    .pulsante {
+      width: 100%;
+      max-width: 330px;
+      padding: 17px;
+      color: var(--nero);
+      background: var(--oro);
+      border: 3px solid white;
+      border-radius: 12px;
+      box-shadow: 0 5px 0 #000;
+      font-size: 17px;
+      font-weight: 1000;
+      text-transform: uppercase;
+    }
 
-.smallprint {
-  margin: 18px 0 0;
-  color: #d9cfc0;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 2px;
-}
+    .nota {
+      color: #c8c0b6;
+      font-size: 12px;
+      margin-top: 22px;
+    }
 
-.catalog {
-  display: none;
-  padding: 22px 18px 40px;
-  background:
-    radial-gradient(circle at top right, #275b7c 0, transparent 45%),
-    #17130f;
-}
+    .catalogo {
+      display: none;
+      width: 100%;
+      max-width: 480px;
+      padding: 24px 0;
+    }
 
-.topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  border-bottom: 2px solid var(--yellow);
-  padding-bottom: 16px;
-}
+    .catalogo h2 {
+      color: var(--oro);
+      text-transform: uppercase;
+    }
 
-.wordmark {
-  margin: 0;
-  color: var(--yellow);
-  font-size: 26px;
-  font-weight: 1000;
-  text-shadow: 2px 3px #a73521;
-}
+    .categoria {
+      width: 100%;
+      padding: 16px;
+      margin: 8px 0;
+      background: #29231c;
+      border: 2px solid var(--oro);
+      border-radius: 10px;
+      color: white;
+      text-align: left;
+      font-weight: bold;
+    }
 
-.back {
-  padding: 9px 12px;
-  border: 2px solid white;
-  border-radius: 7px;
-  color: white;
-  background: transparent;
-  font-size: 12px;
-  font-weight: 800;
-}
+    .indietro {
+      margin-top: 20px;
+      background: transparent;
+      color: var(--oro);
+      border: 1px solid var(--oro);
+      padding: 12px 18px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <main class="schermo">
+    <section class="home" id="home">
+      <div class="eyebrow">BENVENUTO NELLA FAMIGLIA</div>
 
-.catalog h2 {
-  margin: 28px 0 8px;
-  font-size: 30px;
-  text-transform: uppercase;
-}
+      <div class="art">
+        <img src="./el-pueblo-mascotte.jpg" alt="Mascotte EL PUEBLO">
+      </div>
 
-.description {
-  color: #d9cfc0;
-  font-size: 14px;
-  line-height: 1.5;
-}
+      <h1>EL PUEBLO</h1>
+      <div class="sottotitolo">IDENTITÀ · STRADA · FAMIGLIA</div>
 
-.notice {
-  margin-top: 22px;
-  padding: 18px;
-  border: 2px solid var(--yellow);
-  border-radius: 10px;
-  background: #28221b;
-  line-height: 1.5;
-}
+      <p class="descrizione">
+        Entra nel mondo EL PUEBLO e scopri il nostro spazio.
+      </p>
 
-@media (max-height: 700px) {
-  .intro { padding-top: 52vh; }
-  .home { padding-bottom: 20px; }
-  .subtitle { margin-bottom: 14px; }
-}
+      <button class="pulsante" onclick="apriCatalogo()">
+        ENTRA NEL CATALOGO
+      </button>
+
+      <p class="nota">EL PUEBLO · MINI APP</p>
+    </section>
+
+    <section class="catalogo" id="catalogo">
+      <h2>IL CATALOGO</h2>
+      <p>Benvenuto in EL PUEBLO.</p>
+      <button class="categoria">CATEGORIA 01</button>
+      <button class="categoria">CATEGORIA 02</button>
+      <button class="categoria">CATEGORIA 03</button>
+      <button class="indietro" onclick="tornaHome()">← TORNA ALLA HOME</button>
+    </section>
+  </main>
+
+  <script>
+    function apriCatalogo() {
+      document.getElementById("home").style.display = "none";
+      document.getElementById("catalogo").style.display = "block";
+    }
+
+    function tornaHome() {
+      document.getElementById("catalogo").style.display = "none";
+      document.getElementById("home").style.display = "block";
+    }
+  </script>
+</body>
+</html>
