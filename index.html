@@ -184,7 +184,12 @@
     </section>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
   <script>
+   const SUPABASE_URL = "https://rujtqmlzkszxymempeyb.supabase.co";
+const SUPABASE_KEY = "sb_publishable_tc8C07W7OKnMpT6OWbpw7Q_oDoMOXBu";
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
     function apriCatalogo() {
       document.getElementById("home").style.display = "none";
       document.getElementById("catalogo").style.display = "block";
