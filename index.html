@@ -1,207 +1,113 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EL PUEBLO</title>
-  <style>
-    :root {
-      --oro: #ffd329;
-      --nero: #17130f;
-      --blu: #17629a;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      background: var(--nero);
-      color: white;
-      font-family: Arial, sans-serif;
-    }
-
-    button {
-      font: inherit;
-      cursor: pointer;
-    }
-
-    .schermo {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 24px 18px;
-      background:
-        radial-gradient(circle at top right, #275b7c 0, transparent 45%),
-        linear-gradient(145deg, #17130f, #282019);
-    }
-
-    .home {
-      width: 100%;
-      max-width: 480px;
-      text-align: center;
-      padding-top: 5vh;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      color: var(--nero);
-      background: var(--oro);
-      border: 2px solid white;
-      border-radius: 6px;
-      padding: 7px 12px;
-      font-weight: 900;
-      letter-spacing: 2px;
-    }
-
-    .art {
-      margin: 22px auto;
-      width: 100%;
-      max-width: 430px;
-    }
-
-    .art img {
-      display: block;
-      width: 100%;
-      height: auto;
-      border: 4px solid var(--oro);
-      border-radius: 16px;
-      box-shadow: 0 8px 0 #000;
-    }
-
-    h1 {
-      margin: 18px 0 10px;
-      color: var(--oro);
-      font-size: clamp(38px, 10vw, 60px);
-      font-weight: 1000;
-      line-height: .95;
-      letter-spacing: -2px;
-      text-transform: uppercase;
-      -webkit-text-stroke: 1px white;
-      text-shadow: 4px 4px 0 #000;
-    }
-
-    .sottotitolo {
-      font-size: 14px;
-      letter-spacing: 3px;
-      font-weight: 800;
-    }
-
-    .descrizione {
-      color: #e4ded5;
-      line-height: 1.5;
-      margin: 20px auto;
-      max-width: 340px;
-    }
-
-    .pulsante {
-      width: 100%;
-      max-width: 330px;
-      padding: 17px;
-      color: var(--nero);
-      background: var(--oro);
-      border: 3px solid white;
-      border-radius: 12px;
-      box-shadow: 0 5px 0 #000;
-      font-size: 17px;
-      font-weight: 1000;
-      text-transform: uppercase;
-    }
-
-    .nota {
-      color: #c8c0b6;
-      font-size: 12px;
-      margin-top: 22px;
-    }
-
-    .catalogo {
-      display: none;
-      width: 100%;
-      max-width: 480px;
-      padding: 24px 0;
-    }
-
-    .catalogo h2 {
-      color: var(--oro);
-      text-transform: uppercase;
-    }
-
-    .categoria {
-      width: 100%;
-      padding: 16px;
-      margin: 8px 0;
-      background: #29231c;
-      border: 2px solid var(--oro);
-      border-radius: 10px;
-      color: white;
-      text-align: left;
-      font-weight: bold;
-    }
-
-    .indietro {
-      margin-top: 20px;
-      background: transparent;
-      color: var(--oro);
-      border: 1px solid var(--oro);
-      padding: 12px 18px;
-      border-radius: 8px;
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EL PUEBLO — Mini App</title>
+<style>
+:root{--blue:#1263a0;--sky:#2a8ac4;--gold:#f8cb40;--ink:#101820;--paper:#fffaf0;--navy:#0b1925;--panel:#193247;--muted:#b9cfdd}
+*{box-sizing:border-box}body{margin:0;background:var(--navy);color:#fff;font-family:system-ui,-apple-system,Segoe UI,sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer;border:0;border-radius:11px;padding:11px 14px;font-weight:800;background:var(--gold);color:var(--ink)}button.secondary{background:#24485f;color:white;border:1px solid #42647a}button.danger{background:#6f2830;color:#fff}button:disabled{opacity:.5}.app{max-width:760px;margin:auto;min-height:100vh;background:#102a40}.hero{background:linear-gradient(135deg,var(--blue),#075080);padding:18px 16px 16px;border-bottom:5px solid var(--gold)}.brand{display:flex;align-items:center;gap:12px}.crown{width:52px;height:52px;border-radius:13px;background:var(--gold);color:var(--ink);display:grid;place-items:center;font-size:27px;font-weight:1000}.brand h1{font-size:25px;letter-spacing:1px;margin:0}.brand small{display:block;font-size:10px;letter-spacing:2px;margin-top:3px}.hero p{font-weight:900;font-size:clamp(22px,5vw,32px);line-height:1.08;margin:20px 0 6px}.sub{color:#e0eff8;font-size:13px}.nav{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;padding:10px;background:#0b1925;position:sticky;top:0;z-index:4}.nav button{padding:10px 5px;background:#193247;color:#fff;font-size:13px}.nav button.active{background:var(--gold);color:#101820}.content{padding:15px;display:grid;gap:14px}.card{background:var(--panel);border:1px solid #31546a;border-radius:16px;padding:14px}.title{font-size:20px;font-weight:900;margin:0 0 5px}.muted{color:var(--muted);font-size:13px}.cats{display:flex;gap:7px;overflow:auto;padding-bottom:3px}.cats button{white-space:nowrap;font-size:12px;padding:9px 12px}.cats button.active{background:var(--gold);color:var(--ink)}.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.product{background:#193247;border:1px solid #31546a;border-radius:14px;overflow:hidden}.product .media{height:135px;background:#254d69;display:grid;place-items:center;color:var(--gold);font-size:36px;overflow:hidden}.product img{width:100%;height:100%;object-fit:cover}.product video{width:100%;height:100%;object-fit:cover}.product .pbody{padding:10px;display:grid;gap:7px}.product h3{margin:0;font-size:15px;line-height:1.2}.price{color:var(--gold);font-weight:900;font-size:17px}.product button{width:100%;padding:9px;font-size:12px}.field{display:grid;gap:6px;margin:10px 0}.field label{font-size:13px;color:#d7e6ef;font-weight:650}.field input,.field textarea,.field select,.variant input{width:100%;background:#fffaf0;color:#101820;border:1px solid #b8c9d4;border-radius:9px;padding:11px;min-width:0}.field textarea{min-height:72px;resize:vertical}.row{display:flex;gap:8px;align-items:center}.row>*{min-width:0}.grow{flex:1}.variants{display:grid;gap:8px}.variant{display:grid;grid-template-columns:1fr 1fr auto;gap:7px;align-items:end;background:#102a40;padding:10px;border-radius:11px}.variant label{display:block;color:#d7e6ef;font-size:11px;margin-bottom:5px}.variant button{padding:9px}.upload{display:block;border:2px dashed var(--gold);border-radius:12px;padding:13px;text-align:center;background:#173d58;font-weight:750}.upload input{display:block;width:100%;margin-top:8px;font-size:12px}.preview{display:flex;gap:7px;overflow:auto}.preview img,.preview video{width:90px;height:90px;object-fit:cover;border-radius:9px;background:#0b1925}.sectionhead{display:flex;align-items:center;justify-content:space-between;gap:10px}.itemrow{display:flex;gap:10px;align-items:center;background:#102a40;padding:11px;border-radius:10px;margin-top:8px}.itemrow .grow{overflow-wrap:anywhere}.itemrow strong{display:block}.badge{font-size:11px;color:#101820;background:var(--gold);padding:4px 7px;border-radius:7px;display:inline-block;font-weight:800}.hidden{display:none!important}.notice{padding:11px;border-radius:10px;background:#24483f;color:white;font-size:13px}.total{display:flex;justify-content:space-between;align-items:center;font-weight:850;font-size:18px}.foot{text-align:center;padding:15px;color:#9fb8c8;font-size:11px}.empty{text-align:center;padding:28px 12px;color:var(--muted)}.modalback{position:fixed;inset:0;background:#000a;z-index:9;display:grid;place-items:end center}.modal{width:min(760px,100%);max-height:88vh;overflow:auto;background:#102a40;border:1px solid #42647a;border-radius:20px 20px 0 0;padding:18px}.modal .media{height:230px;border-radius:12px;overflow:hidden;background:#254d69;display:grid;place-items:center;margin-bottom:12px}.modal img,.modal video{width:100%;height:100%;object-fit:contain}.ordersummary{font-size:13px;color:var(--muted)}@media(min-width:600px){.content{padding:22px}.products{grid-template-columns:repeat(3,minmax(0,1fr))}.product .media{height:160px}.modalback{place-items:center}.modal{border-radius:20px;max-width:600px}}
+</style>
 </head>
 <body>
-  <main class="schermo">
-    <section class="home" id="home">
-      <div class="eyebrow">BENVENUTO NELLA FAMIGLIA</div>
-
-      <div class="art">
-        <img src="./el-pueblo-mascotte.jpg" alt="Mascotte EL PUEBLO">
-      </div>
-
-      <h1>EL PUEBLO</h1>
-      <div class="sottotitolo">IDENTITÀ · STRADA · FAMIGLIA</div>
-
-      <p class="descrizione">
-        Entra nel mondo EL PUEBLO e scopri il nostro spazio.
-      </p>
-
-      <button class="pulsante" onclick="apriCatalogo()">
-        ENTRA NEL CATALOGO
-      </button>
-
-      <p class="nota">EL PUEBLO · MINI APP</p>
-    </section>
-
-    <section class="catalogo" id="catalogo">
-      <h2>IL CATALOGO</h2>
-      <p>Benvenuto in EL PUEBLO.</p>
-      <button class="categoria" onclick="apriProdotti('DRY')">DRY</button>
-      <button class="categoria" onclick="apriProdotti('INDICA')">INDICA</button>
-      <button class="categoria" onclick="apriProdotti('SATIVA')">SATIVA</button>
-      <button class="categoria" onclick="apriProdotti('SPECIALITÀ')">SPECIALITÀ</button>
-      <button class="indietro" onclick="tornaHome()">← TORNA ALLA HOME</button>
-    </section>
-  </main>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  
-  <script>
-   const SUPABASE_URL = "https://rujtqmlzkszxymempeyb.supabase.co";
-const SUPABASE_KEY = "sb_publishable_tc8C07W7OKnMpT6OWbpw7Q_oDoMOXBu";
-const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-    function apriCatalogo() {
-      document.getElementById("home").style.display = "none";
-      document.getElementById("catalogo").style.display = "block";
-    }
-
-    function tornaHome() {
-      document.getElementById("catalogo").style.display = "none";
-      document.getElementById("home").style.display = "block";
-    }
-    function apriProdotti(categoria) {
-  alert("Hai selezionato la categoria: " + categoria);
+<div class="app">
+<header class="hero">
+  <div class="brand"><div class="crown">♛</div><div><h1>EL PUEBLO</h1><small>STREET CULTURE · OFFICIAL SHOP</small></div></div>
+  <p>IL TUO STILE.<br>LE TUE REGOLE.</p><div class="sub">Catalogo · Varianti personalizzate · Carrello</div>
+</header>
+<nav class="nav" id="nav">
+  <button class="active" data-page="shop">🛍️ Catalogo</button>
+  <button data-page="cart">🛒 Carrello <span id="cartCount">0</span></button>
+</nav>
+<main class="content" id="content"></main>
+<div class="foot">EL PUEBLO · Demo locale interattiva</div>
+</div>
+<div id="modalRoot"></div>
+<script>
+(() => {
+const $ = s => document.querySelector(s);
+const STORE='elpueblo_demo_v1';
+let state={categories:['Novità','Abbigliamento','Accessori'],products:[],cart:[],orders:[]};
+let page=(location.hash==='#admin'?'admin':'shop'),filter='Tutte',editingId=null,files={photos:[],video:null},adminAuthed=false;
+try { const x=JSON.parse(localStorage.getItem(STORE)||'null'); if(x) state={...state,...x}; } catch(e){}
+const money=n=>'€ '+(Number(String(n).replace(',','.'))||0).toFixed(2).replace('.',',');
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function persist(){try{localStorage.setItem(STORE,JSON.stringify({...state,products:state.products.map(p=>({...p,photos:[],video:''}))}));}catch(e){}}
+function persistSafe(){/* Media stays in this open session only; text data is stored locally. */try{localStorage.setItem(STORE,JSON.stringify({...state,products:state.products.map(p=>({...p,photos:[],video:''}))}));}catch(e){}}
+function showNotice(s){const n=$('#notice');if(n){n.textContent=s;n.classList.remove('hidden');}}
+function renderNav(){document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));$('#cartCount').textContent=state.cart.reduce((n,x)=>n+x.qty,0);}
+function mediaMarkup(p){if(p.photos?.[0])return `<img src="${p.photos[0]}" alt="${esc(p.name)}">`;if(p.video)return `<video src="${p.video}" muted playsinline></video>`;return '📦';}
+function renderShop(){
+const visible=state.products.filter(p=>filter==='Tutte'||p.category===filter);
+$('#content').innerHTML=`<section><h2 class="title">IL CATALOGO</h2><p class="muted">Scopri le novità del Pueblo.</p></section>
+<div class="cats">${['Tutte',...state.categories].map(c=>`<button class="${filter===c?'active':''}" data-filter="${esc(c)}">${esc(c)}</button>`).join('')}</div>
+${visible.length?`<div class="products">${visible.map(p=>`<article class="product"><div class="media">${mediaMarkup(p)}</div><div class="pbody"><h3>${esc(p.name)}</h3><div class="muted">${esc(p.category)}</div><div class="price">Da ${money(p.variants[0]?.price||0)}</div><button data-detail="${p.id}">VEDI PRODOTTO</button></div></article>`).join('')}</div>`:`<div class="card empty">📦<p>Nessun prodotto in questa categoria.</p><p class="muted">Apri Gestione per aggiungere prodotti demo.</p></div>`}
+<div class="muted">Anteprima: foto e video scelti restano disponibili nella sessione corrente. Il salvataggio cloud richiede una pubblicazione con backend.</div>`;
+$('#content').querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{filter=b.dataset.filter;render()});
+$('#content').querySelectorAll('[data-detail]').forEach(b=>b.onclick=()=>openDetail(Number(b.dataset.detail)));
 }
-  </script>
+function openDetail(id){
+const p=state.products.find(x=>x.id===id);if(!p)return;
+const root=$('#modalRoot');root.innerHTML=`<div class="modalback" id="back"><div class="modal"><div class="sectionhead"><h2 class="title">${esc(p.name)}</h2><button class="secondary" id="close">Chiudi ✕</button></div><div class="media">${p.photos?.[0]?`<img src="${p.photos[0]}">`:p.video?`<video src="${p.video}" controls playsinline></video>`:'📦'}</div>${p.description?`<p class="muted">${esc(p.description)}</p>`:''}<div class="field"><label for="variantChoice">Scegli variante / grammatura</label><select id="variantChoice">${p.variants.map((v,i)=>`<option value="${i}">${esc(v.name)} — ${money(v.price)}</option>`).join('')}</select></div><div class="field"><label>Quantità</label><input id="qty" type="number" min="1" value="1"></div><button id="addCart" style="width:100%">AGGIUNGI AL CARRELLO</button></div></div>`;
+$('#close').onclick=()=>root.innerHTML='';
+$('#back').onclick=e=>{if(e.target.id==='back')root.innerHTML='';};
+$('#addCart').onclick=()=>{const v=p.variants[Number($('#variantChoice').value)],qty=Math.max(1,parseInt($('#qty').value||'1',10));state.cart.push({productId:p.id,name:p.name,variant:v.name,price:v.price,qty});persistSafe();root.innerHTML='';page='cart';render();};
+}
+function renderCart(){
+if(!state.cart.length){$('#content').innerHTML=`<h2 class="title">IL TUO CARRELLO</h2><div class="card empty">🛒<p>Il carrello è vuoto.</p><button id="goShop">Vai al catalogo</button></div>`;$('#goShop').onclick=()=>{page='shop';render()};return;}
+const total=state.cart.reduce((n,x)=>n+(Number(String(x.price).replace(',','.'))||0)*x.qty,0);
+$('#content').innerHTML=`<h2 class="title">IL TUO CARRELLO</h2>${state.cart.map((x,i)=>`<div class="itemrow"><div class="grow"><strong>${esc(x.name)}</strong><div class="muted">${esc(x.variant)} · ${money(x.price)}</div><div class="row" style="margin-top:8px"><button class="secondary" data-minus="${i}">−</button><b>${x.qty}</b><button class="secondary" data-plus="${i}">+</button></div></div><button class="danger" data-remove="${i}">✕</button></div>`).join('')}<div class="card"><div class="total"><span>Totale</span><span class="price">${money(total)}</span></div><div class="field"><label for="customerName">Nome per ordine demo</label><input id="customerName" placeholder="Il tuo nome"></div><button id="placeOrder" style="width:100%">CONFERMA ORDINE DEMO</button><p class="muted">Demo locale: non invia ordini reali.</p></div>`;
+$('#content').querySelectorAll('[data-minus]').forEach(b=>b.onclick=()=>{const i=+b.dataset.minus;state.cart[i].qty=Math.max(1,state.cart[i].qty-1);persistSafe();render()});
+$('#content').querySelectorAll('[data-plus]').forEach(b=>b.onclick=()=>{state.cart[+b.dataset.plus].qty++;persistSafe();render()});
+$('#content').querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{state.cart.splice(+b.dataset.remove,1);persistSafe();render()});
+$('#placeOrder').onclick=()=>{const name=$('#customerName').value.trim();if(!name){alert('Inserisci il nome per l’ordine demo.');return;}state.orders.unshift({id:Date.now(),name,items:state.cart.map(x=>({...x})),total,status:'Ricevuto (demo)'});state.cart=[];persistSafe();alert('Ordine salvato solo in questa demo.');page='orders';render();};
+}
+function renderAdmin(){
+if(!adminAuthed){$('#content').innerHTML=`<section class="card"><span class="badge">AREA PRIVATA · DEMO</span><h2 class="title" style="margin-top:10px">Accesso gestione</h2><p class="muted">Nel sito reale l'accesso dovrà essere verificato dal server. Qui il pulsante simula soltanto l'ingresso.</p><button id="demoLogin" style="width:100%">ENTRA NELLA DEMO ADMIN</button></section>`;$('#demoLogin').onclick=()=>{adminAuthed=true;render()};return;}
+$('#content').innerHTML=`<div class="sectionhead"><div><h2 class="title">PANNELLO PRIVATO</h2><div class="muted">Gestione locale dimostrativa</div></div><button class="secondary" id="logout">Esci</button></div>
+<div class="cats"><button class="${adminTab==='products'?'active':''}" data-admin-tab="products">Prodotti</button><button class="${adminTab==='categories'?'active':''}" data-admin-tab="categories">Categorie</button><button class="${adminTab==='orders'?'active':''}" data-admin-tab="orders">Ordini (${state.orders.length})</button></div><div id="adminInner"></div>`;
+$('#logout').onclick=()=>{adminAuthed=false;render()};
+$('#content').querySelectorAll('[data-admin-tab]').forEach(b=>b.onclick=()=>{adminTab=b.dataset.adminTab;renderAdminInner()});
+renderAdminInner();
+}
+let adminTab='products';
+function renderAdminInner(){
+const inner=$('#adminInner');if(!inner)return;
+if(adminTab==='categories'){
+inner.innerHTML=`<section class="card"><h3 class="title">Le tue categorie</h3><div class="field"><label>Nome nuova categoria</label><div class="row"><input id="newCat" class="grow" placeholder="Es. Nuove collezioni"><button id="addCat">Aggiungi</button></div></div><div id="catList"></div></section>`;
+const list=$('#catList');
+function drawCats(){list.innerHTML=state.categories.map((c,i)=>`<div class="itemrow"><div class="grow"><strong>${esc(c)}</strong></div><button class="secondary" data-rename="${i}">Rinomina</button><button class="danger" data-delcat="${i}">✕</button></div>`).join('')||'<p class="muted">Nessuna categoria.</p>';list.querySelectorAll('[data-rename]').forEach(b=>b.onclick=()=>{const i=+b.dataset.rename,n=prompt('Nuovo nome categoria',state.categories[i]);if(n?.trim()){const old=state.categories[i],nn=n.trim();state.categories[i]=nn;state.products.forEach(p=>{if(p.category===old)p.category=nn});persistSafe();renderAdminInner()}});list.querySelectorAll('[data-delcat]').forEach(b=>b.onclick=()=>{const i=+b.dataset.delcat,old=state.categories[i];if(confirm('Eliminare la categoria '+old+'? I prodotti saranno spostati in “Senza categoria”.')){state.categories.splice(i,1);state.products.forEach(p=>{if(p.category===old)p.category='Senza categoria'});persistSafe();renderAdminInner()}})}
+$('#addCat').onclick=()=>{const n=$('#newCat').value.trim();if(!n)return alert('Inserisci il nome della categoria.');if(state.categories.some(c=>c.toLowerCase()===n.toLowerCase()))return alert('Categoria già esistente.');state.categories.push(n);persistSafe();renderAdminInner()};drawCats();return;
+}
+if(adminTab==='orders'){inner.innerHTML=state.orders.length?state.orders.map(o=>`<div class="card"><div class="sectionhead"><strong>Ordine #${o.id.toString().slice(-6)}</strong><span class="badge">${esc(o.status)}</span></div><p>${esc(o.name)} · Totale ${money(o.total)}</p>${o.items.map(x=>`<div class="muted">${esc(x.name)} — ${esc(x.variant)} × ${x.qty} — ${money(x.price)}</div>`).join('')}<div class="row" style="margin-top:10px"><button class="secondary" data-status="${o.id}">Segna in lavorazione</button><button class="danger" data-delorder="${o.id}">Elimina</button></div></div>`).join(''):'<div class="card empty">Nessun ordine demo ancora.</div>';inner.querySelectorAll('[data-status]').forEach(b=>b.onclick=()=>{const o=state.orders.find(x=>x.id===+b.dataset.status);if(o)o.status='In lavorazione (demo)';persistSafe();renderAdminInner()});inner.querySelectorAll('[data-delorder]').forEach(b=>b.onclick=()=>{state.orders=state.orders.filter(x=>x.id!==+b.dataset.delorder);persistSafe();renderAdminInner()});return;}
+const editing=editingId!==null?state.products.find(p=>p.id===editingId):null;
+inner.innerHTML=`<section class="card"><h3 class="title">${editing?'Modifica prodotto':'Aggiungi prodotto'}</h3>
+<div class="field"><label>Nome prodotto</label><input id="pName" value="${esc(editing?.name||'')}" placeholder="Nome prodotto"></div>
+<div class="field"><label>Categoria</label><select id="pCategory">${state.categories.map(c=>`<option ${c===(editing?.category||state.categories[0])?'selected':''}>${esc(c)}</option>`).join('')}</select></div>
+<div class="field"><label>Descrizione</label><textarea id="pDesc" placeholder="Descrizione">${esc(editing?.description||'')}</textarea></div>
+<div class="field"><label>Foto dal telefono</label><label class="upload">📷 Scegli una o più foto<input id="pPhotos" type="file" accept="image/*" multiple></label><div id="photoPreview" class="preview"></div></div>
+<div class="field"><label>Video dal telefono</label><label class="upload">🎬 Scegli un video<input id="pVideo" type="file" accept="video/*"></label><div id="videoPreview" class="preview"></div></div>
+<div class="field"><div class="sectionhead"><label>Grammature / varianti e prezzi</label><button id="addVariant" type="button">＋ Variante</button></div><div id="variantRows" class="variants"></div></div>
+<div class="row"><button id="saveProduct" class="grow">${editing?'Salva modifiche':'Salva prodotto demo'}</button>${editing?'<button id="cancelEdit" class="secondary">Annulla</button>':''}</div><p class="muted">I file sono temporanei nella sessione. Per conservarli online serve un servizio di archiviazione.</p></section>
+<section><h3 class="title">Prodotti (${state.products.length})</h3>${state.products.map(p=>`<div class="itemrow"><div class="grow"><strong>${esc(p.name)}</strong><div class="muted">${esc(p.category)} · ${p.variants.length} varianti</div></div><button class="secondary" data-edit="${p.id}">Modifica</button><button class="danger" data-delete="${p.id}">✕</button></div>`).join('')||'<div class="card empty">Nessun prodotto inserito.</div>'}</section>`;
+let draftVariants=editing?editing.variants.map(v=>({...v})):[{name:'',price:''}];
+let pickedPhotos=editing?.photos?.slice()||[],pickedVideo=editing?.video||'';
+function drawVariants(){const box=$('#variantRows');box.innerHTML=draftVariants.map((v,i)=>`<div class="variant"><div><label>Grammatura / opzione</label><input data-vname="${i}" value="${esc(v.name)}" placeholder="Es. formato"></div><div><label>Prezzo (€)</label><input data-vprice="${i}" value="${esc(v.price)}" placeholder="Es. 19,90" inputmode="decimal"></div><button class="danger" data-vdel="${i}">✕</button></div>`).join('');box.querySelectorAll('[data-vname]').forEach(x=>x.oninput=()=>draftVariants[+x.dataset.vname].name=x.value);box.querySelectorAll('[data-vprice]').forEach(x=>x.oninput=()=>draftVariants[+x.dataset.vprice].price=x.value);box.querySelectorAll('[data-vdel]').forEach(x=>x.onclick=()=>{draftVariants.splice(+x.dataset.vdel,1);drawVariants()})}
+function showPreviews(){const box=$('#photoPreview');box.innerHTML='';pickedPhotos.forEach(src=>{const im=document.createElement('img');im.src=src;box.append(im)});const vb=$('#videoPreview');vb.innerHTML='';if(pickedVideo){const v=document.createElement('video');v.src=pickedVideo;v.controls=true;vb.append(v)}}
+drawVariants();showPreviews();
+$('#addVariant').onclick=()=>{draftVariants.push({name:'',price:''});drawVariants()};
+$('#pPhotos').onchange=e=>{const files=[...e.target.files];pickedPhotos=files.map(f=>URL.createObjectURL(f));showPreviews()};
+$('#pVideo').onchange=e=>{const f=e.target.files[0];if(f)pickedVideo=URL.createObjectURL(f);showPreviews()};
+$('#saveProduct').onclick=()=>{const name=$('#pName').value.trim(),category=$('#pCategory').value,description=$('#pDesc').value.trim();if(!name)return alert('Inserisci il nome prodotto.');if(!draftVariants.length||draftVariants.some(v=>!v.name.trim()||!v.price.trim()))return alert('Compila ogni variante e il suo prezzo.');const p={id:editing?.id||Date.now(),name,category,description,variants:draftVariants.map(v=>({...v})),photos:pickedPhotos,video:pickedVideo};if(editing)state.products=state.products.map(x=>x.id===editing.id?p:x);else state.products.unshift(p);editingId=null;persistSafe();renderAdminInner();};
+if(editing)$('#cancelEdit').onclick=()=>{editingId=null;renderAdminInner()};
+inner.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>{editingId=+b.dataset.edit;renderAdminInner();window.scrollTo({top:0,behavior:'smooth'})});
+inner.querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>{if(confirm('Eliminare questo prodotto?')){state.products=state.products.filter(x=>x.id!==+b.dataset.delete);persistSafe();renderAdminInner()}});
+}
+function render(){renderNav();if(page==='shop')renderShop();else if(page==='cart')renderCart();else if(page==='admin')renderAdmin();else if(page==='orders'){adminAuthed?renderOrders():renderAdmin()} }
+function renderOrders(){page='admin';adminAuthed=true;adminTab='orders';renderAdmin();}
+$('#nav').querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>{page=b.dataset.page;adminAuthed=false;location.hash='';render()});
+if(page==='admin'){adminAuthed=false;}render();
+})();
+</script>
 </body>
 </html>
